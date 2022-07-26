@@ -1,3 +1,4 @@
+import {mergeMapArrayToNewOne} from "@/util/object_util.js"
 import apiConf from "@/config/api.conf.js";
 
 const requestTransfromPromise=(url,method,data)=>new Promise(
@@ -16,6 +17,8 @@ const requestTransfromPromise=(url,method,data)=>new Promise(
 		})
 	}
 );
+
+//暂时废除，实例化会带来大量的性能浪费，后续再做考虑
 const requestStep={
 	init:"init",
 	requesting:"requesting",
@@ -32,7 +35,8 @@ const createRequestStatemachine=(function(){
 	return {
 		statemachine(type,context,extendHandlers){
 			if(handlers[type]){
-				const curHandlers
+				const curHandlers=mergeMapArrayToNewOne(handlers,extendHandlers);
+				return curHandlers[type].reduce((ctx,curHandler)=>{curHandler(ctx)},context);
 				// return handlers[type].reduce((ctx,curHandler)=>curHandler(ctx),context)
 			};
 			return null;
@@ -45,9 +49,8 @@ const createRequestStatemachine=(function(){
 	}
 })();
 const simpleRequest=async function (url,method,data,handlers){
-	let requestStatee=()
+	// let requestState=requestStep.init;
 	try(
-	
 	)catch(err){
 		
 	}
@@ -63,7 +66,8 @@ const api={
 };
 
 const request={
-	requestStep,
-	createRequestStatemachine,
+	// requestStep,
+	// createRequestStatemachine,
 	...api
 };
+export default request;

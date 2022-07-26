@@ -11,7 +11,7 @@
  }} origin1 根据第一个对象访问它的对象属
  */
 
-const mergeMapArrayToNewOne=(origin,origin1)=>{
+export const mergeMapArrayToNewOne=(origin,origin1)=>{
 	const obj=Object.keys(origin).reduce((target,key)=>{
 		
 		const isArrayValues=[origin[key],origin1[key]].filter(Boolean).every(Array.isArray);
@@ -22,4 +22,4 @@ const mergeMapArrayToNewOne=(origin,origin1)=>{
 		target[key]=Array.isArray(origin1[key])?[...origin[key],...origin1[key]]:[...origin];
 		return target;
 	},{});
-}
+};
