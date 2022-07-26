@@ -1,0 +1,1 @@
+<view class="text-center"><text>{{title}}</text><view class="_br"></view><text>{{$root.m0}}</text></view>

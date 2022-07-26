@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{title}}</text></view><view><navigator url="/pages/login/login">跳转登陆页面</navigator></view></view>
